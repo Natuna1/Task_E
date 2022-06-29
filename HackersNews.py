@@ -7,17 +7,30 @@ import requests
 import time
 
 
-def Top_Articles():
+def top_articles():
     response = requests.get('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty')  # 新しいトップ記事
 
-    dic = response.json()  # 辞書として表示...パース
-    print(dic)
-# typeを使ってjsonを調べる
-  #  print(type(response.json()))
-  #  number = []
-    for number in range(0, 50):
-        print(number)
-        time.sleep(1)  # ここで1秒止まる
+    dic = response.json()  # パース
 
-  # def News():
-  # response = requests.get(f'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty')  # 新しいトップ記事
+    numbers = []
+    for number in range(0, 50):
+        numbers.append(dic[number])
+
+        return numbers
+
+"""
+def get_information(number):
+    for x in numbers:
+        search_number = x
+        response = requests.get(f'https://hacker-news.firebaseio.com/v0/{search_number}.json?print=pretty')
+"""
+
+
+def main():
+    numbers = top_articles()
+    print(numbers)
+    # get_info(numbers)
+
+
+if __name__ == "__main__":
+    main()
